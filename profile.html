@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Maratha Profile</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+  padding: 40px 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: -1;
+}
+
+.profile-container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  padding: 40px;
+  box-shadow: 0 0 35px rgba(201,162,77,0.6);
+}
+
+.profile-header {
+  text-align: center;
+}
+
+.profile-header img {
+  max-width: 260px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px rgba(212,175,55,0.8));
+}
+
+.profile-header h1 {
+  color: #D4AF37;
+  font-size: 36px;
+}
+
+.profile-header h3 {
+  color: #C9A24D;
+  margin-top: 8px;
+}
+
+.profile-header p {
+  margin-top: 10px;
+  color: #ddd;
+}
+
+.section {
+  margin-top: 35px;
+}
+
+.section h2 {
+  color: #D4AF37;
+  border-bottom: 1px solid #C9A24D;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.section p {
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.timeline {
+  margin-left: 20px;
+}
+
+.timeline li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 35px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  color: #1c1c1c;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(212,175,55,0.8);
+}
+</style>
+</head>
+
+<body>
+
+<div class="profile-container">
+
+  <div class="profile-header">
+    <img id="profileImage" alt="">
+    <h1 id="profileName"></h1>
+    <h3 id="profileTitle"></h3>
+    <p id="profileLife"></p>
+  </div>
+
+  <div class="section">
+    <h2>Life & History</h2>
+    <p id="profileHistory"></p>
+  </div>
+
+  <div class="section">
+    <h2>Legacy</h2>
+    <p id="profileLegacy"></p>
+  </div>
+
+  <!-- ✅ NEW TIMELINE SECTION -->
+  <div class="section">
+    <h2>Timeline</h2>
+    <ul id="profileTimeline" class="timeline"></ul>
+  </div>
+
+  <a class="back-btn" href="main.html">← Back to Gallery</a>
+
+</div>
+
+<script>
+const profiles = {
+
+  /* ===== KINGS ===== */
+
+  shahaji: {
+    name: "Shahaji Raje Bhosale",
+    title: "Maratha General and Visionary Leader",
+    birth: "18 March 1594",
+    death: "23 January 1664",
+    image: "assets/shahaji.jpg",
+    history:
+`Shahaji Raje Bhosale was a prominent Maratha general in the Deccan Sultanates.
+He laid the political and military foundation for the rise of the Maratha Empire.`,
+    legacy:
+`• Early architect of Maratha power
+• Skilled military commander
+• Father of Chhatrapati Shivaji Maharaj`,
+    timeline: [
+      "1594 – Birth of Shahaji Raje",
+      "1620s – Service under Deccan Sultanates",
+      "1630 – Birth of Shivaji Maharaj",
+      "1640s – Establishment of Pune jagir",
+      "1664 – Death"
+    ]
+  },
+
+  sambhaji_shahaji: {
+    name: "Sambhaji Shahaji Raje Bhosale",
+    title: "Elder Son of Shahaji Raje",
+    birth: "1616",
+    death: "1654",
+    image: "assets/sambhaji.jpg",
+    history:
+`Sambhaji Shahaji Raje was involved in early Maratha administration,
+especially in Karnataka.`,
+    legacy:
+`• Early Maratha administrator
+• Important figure in Maratha lineage`,
+    timeline: [
+      "1616 – Birth",
+      "1630s – Administrative role in Karnataka",
+      "1654 – Death"
+    ]
+  },
+
+  shivaji: {
+    name: "Chhatrapati Shivaji Maharaj",
+    title: "Founder of the Maratha Empire",
+    birth: "19 February 1630, Shivneri Fort",
+    death: "3 April 1680, Raigad Fort",
+    image: "assets/shivaji.jpg",
+    history:
+`Chhatrapati Shivaji Maharaj founded Swarajya based on justice, administration,
+and military innovation.`,
+    legacy:
+`• Founder of Swarajya
+• Master of guerrilla warfare
+• Eternal symbol of leadership`,
+    timeline: [
+      "1630 – Born at Shivneri Fort",
+      "1645 – Oath of Swarajya",
+      "1656 – Capture of Torna Fort",
+      "1666 – Escape from Agra",
+      "1674 – Coronation at Raigad",
+      "1680 – Death"
+    ]
+  },
+
+  sambhaji: {
+    name: "Chhatrapati Sambhaji Maharaj",
+    title: "Second Chhatrapati of the Maratha Empire",
+    birth: "14 May 1657",
+    death: "11 March 1689",
+    image: "assets/sambhaji1.jpg",
+    history:
+`A fearless warrior and scholar, Sambhaji Maharaj defended Swarajya
+against the Mughal Empire.`,
+    legacy:
+`• Symbol of sacrifice
+• Defender of Maratha sovereignty`,
+    timeline: [
+      "1657 – Birth",
+      "1681 – Coronation",
+      "1687 – Mughal campaigns intensify",
+      "1689 – Martyrdom at Tulapur"
+    ]
+  },
+
+  rajaram: {
+    name: "Chhatrapati Rajaram Maharaj",
+    title: "Third Chhatrapati of the Maratha Empire",
+    birth: "24 February 1670",
+    death: "3 March 1700",
+    image: "assets/rajaram.jpg",
+    history:
+`Rajaram Maharaj ensured the survival of Swarajya during extreme Mughal pressure.`,
+    legacy:
+`• Preserved Maratha resistance
+• Strategic wartime leader`,
+    timeline: [
+      "1670 – Birth",
+      "1689 – Became Chhatrapati",
+      "1690s – Resistance from Jinji",
+      "1700 – Death"
+    ]
+  },
+
+  shahu: {
+    name: "Chhatrapati Shahu Maharaj",
+    title: "Fourth Chhatrapati of the Maratha Empire",
+    birth: "18 May 1682",
+    death: "15 December 1749",
+    image: "assets/shahu.jpg",
+    history:
+`Shahu Maharaj strengthened Maratha administration and empowered the Peshwas.`,
+    legacy:
+`• Administrative consolidation
+• Expansion of Maratha influence`,
+    timeline: [
+      "1682 – Birth",
+      "1707 – Released from Mughal captivity",
+      "1708 – Coronation",
+      "1749 – Death"
+    ]
+  },
+
+  /* ===== QUEENS ===== */
+
+  jijabai: {
+    name: "Rajmata Jijabai",
+    title: "Mother of the Maratha Empire",
+    birth: "12 January 1598",
+    death: "17 June 1674",
+    image: "assets/jijabai.jpg",
+    history:
+`Rajmata Jijabai shaped Shivaji Maharaj’s ideals and vision.`,
+    legacy:
+`• Moral foundation of Swarajya
+• Ideal mother and leader`,
+    timeline: [
+      "1598 – Birth",
+      "1630 – Birth of Shivaji Maharaj",
+      "1645 – Inspired Swarajya oath",
+      "1674 – Witnessed coronation",
+      "1674 – Death"
+    ]
+  },
+
+  saibai: {
+    name: "Maharani Saibai",
+    title: "Queen Consort of Shivaji Maharaj",
+    birth: "1633",
+    death: "1659",
+    image: "assets/saibai.jpg",
+    history:
+`Maharani Saibai supported Shivaji Maharaj during early struggles.`,
+    legacy:
+`• Mother of Sambhaji Maharaj
+• Symbol of devotion`,
+    timeline: [
+      "1633 – Birth",
+      "1640 – Marriage",
+      "1657 – Birth of Sambhaji Maharaj",
+      "1659 – Death"
+    ]
+  },
+
+  soyrabai: {
+    name: "Maharani Soyrabai",
+    title: "Queen Consort of Shivaji Maharaj",
+    birth: "1652",
+    death: "1680",
+    image: "assets/soyrabai.jpg",
+    history:
+`Soyrabai was influential in post-Shivaji court politics.`,
+    legacy:
+`• Influential royal figure`,
+    timeline: [
+      "1652 – Birth",
+      "1660s – Marriage",
+      "1680 – Political influence after Shivaji’s death"
+    ]
+  },
+
+  putlabai: {
+    name: "Maharani Putlabai",
+    title: "Senior Queen of Shivaji Maharaj",
+    birth: "17th Century",
+    death: "1680",
+    image: "assets/putlabai.jpg",
+    history:
+`Putlabai was deeply religious and devoted.`,
+    legacy:
+`• Symbol of devotion and tradition`,
+    timeline: [
+      "17th Century – Birth",
+      "Marriage to Shivaji Maharaj",
+      "1680 – Death"
+    ]
+  },
+
+  yesubai: {
+    name: "Maharani Yesubai",
+    title: "Queen of Sambhaji Maharaj",
+    birth: "1667",
+    death: "1730",
+    image: "assets/yesubai.jpg",
+    history:
+`Yesubai endured Mughal captivity and supported Shahu Maharaj.`,
+    legacy:
+`• Symbol of resilience`,
+    timeline: [
+      "1667 – Birth",
+      "1689 – Mughal captivity",
+      "1707 – Release",
+      "1730 – Death"
+    ]
+  },
+
+  tarabai: {
+    name: "Maharani Tarabai",
+    title: "Regent of the Maratha Empire",
+    birth: "1675",
+    death: "1761",
+    image: "assets/tarabai.jpg",
+    history:
+`Tarabai led Maratha resistance against the Mughals.`,
+    legacy:
+`• Warrior queen
+• Exceptional administrator`,
+    timeline: [
+      "1675 – Birth",
+      "1700 – Became regent",
+      "1700–1707 – Led anti-Mughal resistance",
+      "1761 – Death"
+    ]
+  }
+
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const data = profiles[id];
+
+if (!data) {
+  document.getElementById("profileName").innerText = "Profile Not Found";
+} else {
+  document.getElementById("profileImage").src = data.image;
+  document.getElementById("profileName").innerText = data.name;
+  document.getElementById("profileTitle").innerText = data.title;
+  document.getElementById("profileLife").innerText =
+    data.birth + " — " + data.death;
+  document.getElementById("profileHistory").innerText = data.history;
+  document.getElementById("profileLegacy").innerText = data.legacy;
+
+  const timelineEl = document.getElementById("profileTimeline");
+  data.timeline.forEach(event => {
+    const li = document.createElement("li");
+    li.textContent = event;
+    timelineEl.appendChild(li);
+  });
+}
+</script>
+
+</body>
+</html>

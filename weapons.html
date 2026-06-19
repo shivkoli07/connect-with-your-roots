@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Weapons of Maratha Empire</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  z-index: -1;
+}
+
+/* ===== TOP CONTROLS ===== */
+.top-controls {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* ===== SEARCH ===== */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  width: 220px;
+  font-size: 14px;
+  border: 1.5px solid #C9A24D;
+  background: rgba(0,0,0,0.85);
+  color: #F8F6F1;
+  outline: none;
+}
+
+.search-results {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background: rgba(0,0,0,0.95);
+  border: 1px solid #C9A24D;
+  display: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.search-results div {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(201,162,77,0.2);
+}
+
+.search-results div:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1.5px solid #C9A24D;
+  color: #F8F6F1;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title {
+  text-align: center;
+  padding: 50px 20px 20px;
+  font-size: 42px;
+  color: #D4AF37;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px #D4AF37;
+}
+
+.grid {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+}
+
+.card {
+  background: rgba(0,0,0,0.92);
+  border: 1.5px solid #C9A24D;
+  box-shadow: 0 0 22px rgba(201,162,77,0.45);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(255,200,120,0.8);
+}
+
+.image-frame {
+  height: 260px;
+  background: radial-gradient(circle, #2b220f, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-frame img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.card-name {
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  border-top: 1px solid rgba(201,162,77,0.4);
+}
+
+.card-sub {
+  font-size: 14px;
+  color: #c9c9c9;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== TOP CONTROLS ===== -->
+<div class="top-controls">
+  <div class="search-box">
+    <input type="text" placeholder="Search Weapon..." oninput="searchWeapons(this.value)">
+    <div class="search-results" id="results"></div>
+  </div>
+  <button class="back-btn" onclick="goBack()">← Back</button>
+</div>
+
+<div class="page-title">Weapons of the Maratha Empire</div>
+
+<div class="grid">
+
+  <div class="card" onclick="openWeapon('bhavani')">
+    <div class="image-frame"><img src="assets/weapons/bhavani.jpg"></div>
+    <div class="card-name">Bhavani Talwar
+      <div class="card-sub">Sword of Shivaji Maharaj</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="openWeapon('dandpatta')">
+    <div class="image-frame"><img src="assets/weapons/dandpatta.jpg"></div>
+    <div class="card-name">Dandpatta
+      <div class="card-sub">Flexible Sword</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="openWeapon('katar')">
+    <div class="image-frame"><img src="assets/weapons/katar.jpg"></div>
+    <div class="card-name">Katar
+      <div class="card-sub">Punch Dagger</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="openWeapon('barchi')">
+    <div class="image-frame"><img src="assets/weapons/barchi.jpg"></div>
+    <div class="card-name">Barchi
+      <div class="card-sub">Spear Weapon</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="openWeapon('vaghnakh')">
+    <div class="image-frame"><img src="assets/weapons/vaghnakh.jpg"></div>
+    <div class="card-name">Vagh Nakh
+      <div class="card-sub">Tiger Claws</div>
+    </div>
+  </div>
+
+  <div class="card" onclick="openWeapon('teerdhanush')">
+    <div class="image-frame"><img src="assets/weapons/bow.jpg"></div>
+    <div class="card-name">Teer–Dhanush
+      <div class="card-sub">Bow and Arrow</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const weapons = [
+  "Bhavani Talwar",
+  "Dandpatta",
+  "Katar",
+  "Barchi",
+  "Vagh Nakh",
+  "Teer–Dhanush"
+];
+
+function searchWeapons(value) {
+  const res = document.getElementById("results");
+  res.innerHTML = "";
+  if (!value) {
+    res.style.display = "none";
+    return;
+  }
+
+  weapons
+    .filter(w => w.toLowerCase().includes(value.toLowerCase()))
+    .forEach(w => {
+      const div = document.createElement("div");
+      div.textContent = w;
+      div.onclick = () => openWeapon(
+        w.toLowerCase().replace(/–/g,"").replace(/ /g,"")
+      );
+      res.appendChild(div);
+    });
+
+  res.style.display = "block";
+}
+
+function openWeapon(id) {
+  window.location.href = "weapon-profile.html?id=" + id;
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

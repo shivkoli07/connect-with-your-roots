@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Great Maratha Warriors</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: -1;
+}
+
+/* ===== TOP CONTROLS ===== */
+.top-controls {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* ===== SEARCH ===== */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  width: 240px;
+  font-size: 14px;
+  border: 1.5px solid #C9A24D;
+  background: rgba(0,0,0,0.85);
+  color: #F8F6F1;
+  outline: none;
+}
+
+.search-results {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background: rgba(0,0,0,0.95);
+  border: 1px solid #C9A24D;
+  display: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.search-results div {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(201,162,77,0.2);
+}
+
+.search-results div:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1.5px solid #C9A24D;
+  color: #F8F6F1;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title {
+  text-align: center;
+  padding: 60px 20px 30px;
+  font-size: 42px;
+  color: #D4AF37;
+  text-shadow: 0 0 12px #D4AF37;
+}
+
+.grid {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+}
+
+.card {
+  background: rgba(0,0,0,0.92);
+  border: 1.5px solid #C9A24D;
+  box-shadow: 0 0 22px rgba(201,162,77,0.45);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(255,200,120,0.8);
+}
+
+.image-frame {
+  height: 260px;
+  background: radial-gradient(circle, #2b220f, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.image-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(212,175,55,0.6));
+}
+
+.card-name {
+  padding: 18px;
+  text-align: center;
+  font-size: 18px;
+  border-top: 1px solid rgba(201,162,77,0.4);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== TOP CONTROLS ===== -->
+<div class="top-controls">
+  <div class="search-box">
+    <input type="text" placeholder="Search Warrior..." oninput="searchWarriors(this.value)">
+    <div class="search-results" id="results"></div>
+  </div>
+  <button class="back-btn" onclick="goBack()">← Back</button>
+</div>
+
+<div class="page-title">Great Maratha Warriors</div>
+
+<div class="grid">
+
+  <div class="card" onclick="openWarrior('tanaji')">
+    <div class="image-frame"><img src="assets/warriors/tanaji.jpg"></div>
+    <div class="card-name">Tanaji Malusare</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('baji')">
+    <div class="image-frame"><img src="assets/warriors/baji.jpg"></div>
+    <div class="card-name">Baji Prabhu Deshpande</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('netaji')">
+    <div class="image-frame"><img src="assets/warriors/netaji.jpg"></div>
+    <div class="card-name">Netaji Palkar</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('hambirrao')">
+    <div class="image-frame"><img src="assets/warriors/hambirrao.jpg"></div>
+    <div class="card-name">Hambirrao Mohite</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('yesaji')">
+    <div class="image-frame"><img src="assets/warriors/yesaji.jpg"></div>
+    <div class="card-name">Yesaji Kank</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('murarbaji')">
+    <div class="image-frame"><img src="assets/warriors/murarbaji.jpg"></div>
+    <div class="card-name">Murarbaji Deshpande</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('kanhoji')">
+    <div class="image-frame"><img src="assets/warriors/kanhoji.jpg"></div>
+    <div class="card-name">Kanhoji Angre</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('santaji')">
+    <div class="image-frame"><img src="assets/warriors/santaji.jpg"></div>
+    <div class="card-name">Santaji Ghorpade</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('dhanaji')">
+    <div class="image-frame"><img src="assets/warriors/dhanaji.jpg"></div>
+    <div class="card-name">Dhanaji Jadhav</div>
+  </div>
+
+  <div class="card" onclick="openWarrior('jiva')">
+    <div class="image-frame"><img src="assets/warriors/jiva.jpg"></div>
+    <div class="card-name">Jiva Mahala</div>
+  </div>
+
+</div>
+
+<script>
+const warriors = [
+  { name: "Tanaji Malusare", id: "tanaji" },
+  { name: "Baji Prabhu Deshpande", id: "baji" },
+  { name: "Netaji Palkar", id: "netaji" },
+  { name: "Hambirrao Mohite", id: "hambirrao" },
+  { name: "Yesaji Kank", id: "yesaji" },
+  { name: "Murarbaji Deshpande", id: "murarbaji" },
+  { name: "Kanhoji Angre", id: "kanhoji" },
+  { name: "Santaji Ghorpade", id: "santaji" },
+  { name: "Dhanaji Jadhav", id: "dhanaji" },
+  { name: "Jiva Mahala", id: "jiva" }
+];
+
+function searchWarriors(value) {
+  const res = document.getElementById("results");
+  res.innerHTML = "";
+  if (!value) {
+    res.style.display = "none";
+    return;
+  }
+
+  warriors
+    .filter(w => w.name.toLowerCase().includes(value.toLowerCase()))
+    .forEach(w => {
+      const div = document.createElement("div");
+      div.textContent = w.name;
+      div.onclick = () => openWarrior(w.id);
+      res.appendChild(div);
+    });
+
+  res.style.display = "block";
+}
+
+function openWarrior(id) {
+  window.location.href = "warrior-profile.html?id=" + id;
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Maratha Warrior</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+  padding: 40px 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: -1;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  padding: 40px;
+  box-shadow: 0 0 35px rgba(201,162,77,0.6);
+}
+
+.header {
+  text-align: center;
+}
+
+.header img {
+  max-width: 260px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 15px rgba(212,175,55,0.8));
+}
+
+.header h1 {
+  color: #D4AF37;
+  font-size: 36px;
+}
+
+.section {
+  margin-top: 30px;
+}
+
+.section h2 {
+  color: #D4AF37;
+  border-bottom: 1px solid #C9A24D;
+  margin-bottom: 12px;
+}
+
+.section p {
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 35px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  color: #1c1c1c;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <img id="img">
+    <h1 id="name"></h1>
+  </div>
+
+  <div class="section">
+    <h2>History</h2>
+    <p id="history"></p>
+  </div>
+
+  <div class="section">
+    <h2>Legacy</h2>
+    <p id="legacy"></p>
+  </div>
+
+  <a class="back-btn" href="warriors.html">← Back to Warriors</a>
+
+</div>
+
+<script>
+const warriors = {
+  tanaji: {
+    name: "Tanaji Malusare",
+    img: "assets/warriors/tanaji.jpg",
+    history: "Commander of the Battle of Sinhagad (1670).",
+    legacy: "Symbol of supreme sacrifice."
+  },
+  baji: {
+    name: "Baji Prabhu Deshpande",
+    img: "assets/warriors/baji.jpg",
+    history: "Defended Ghodkhind against Adilshahi forces.",
+    legacy: "Example of loyalty till last breath."
+  },
+  netaji: {
+    name: "Netaji Palkar",
+    img: "assets/warriors/netaji.jpg",
+    history: "Chief cavalry commander of Shivaji Maharaj.",
+    legacy: "Master of mobile warfare."
+  },
+  hambirrao: {
+    name: "Hambirrao Mohite",
+    img: "assets/warriors/hambirrao.jpg",
+    history: "Senapati under Sambhaji Maharaj.",
+    legacy: "Defender of Maratha sovereignty."
+  },
+  yesaji: {
+    name: "Yesaji Kank",
+    img: "assets/warriors/yesaji.jpg",
+    history: "Captured Torna fort with Shivaji Maharaj.",
+    legacy: "First warrior of Swarajya."
+  },
+  murarbaji: {
+    name: "Murarbaji Deshpande",
+    img: "assets/warriors/murarbaji.jpg",
+    history: "Died defending Purandar fort.",
+    legacy: "Martyr of Swarajya."
+  },
+  kanhoji: {
+    name: "Kanhoji Angre",
+    img: "assets/warriors/kanhoji.jpg",
+    history: "Founder of Maratha Navy.",
+    legacy: "Lord of the Arabian Sea."
+  },
+  santaji: {
+    name: "Santaji Ghorpade",
+    img: "assets/warriors/santaji.jpg",
+    history: "Guerrilla leader against Mughals.",
+    legacy: "Master of hit-and-run warfare."
+  },
+  dhanaji: {
+    name: "Dhanaji Jadhav",
+    img: "assets/warriors/dhanaji.jpg",
+    history: "General during Mughal-Maratha wars.",
+    legacy: "Strategic cavalry commander."
+  },
+  jiva: {
+    name: "Jiva Mahala",
+    img: "assets/warriors/jiva.jpg",
+    history: "Important person at Afzal Khan's Massacre.",
+    legacy: "Hota Jiva Mhanun Vachla Shiva."
+  }
+};
+
+const id = new URLSearchParams(window.location.search).get("id");
+const w = warriors[id];
+
+if (w) {
+  document.getElementById("img").src = w.img;
+  document.getElementById("name").innerText = w.name;
+  document.getElementById("history").innerText = w.history;
+  document.getElementById("legacy").innerText = w.legacy;
+}
+</script>
+
+</body>
+</html>

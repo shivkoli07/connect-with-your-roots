@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Maps of the Maratha Empire</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: -1;
+}
+
+/* ===== TOP CONTROLS ===== */
+.top-controls {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* ===== SEARCH ===== */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  width: 260px;
+  font-size: 14px;
+  border: 1.5px solid #C9A24D;
+  background: rgba(0,0,0,0.85);
+  color: #F8F6F1;
+  outline: none;
+}
+
+.search-results {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background: rgba(0,0,0,0.95);
+  border: 1px solid #C9A24D;
+  display: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.search-results div {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(201,162,77,0.2);
+}
+
+.search-results div:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1.5px solid #C9A24D;
+  color: #F8F6F1;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== TITLE ===== */
+.page-title {
+  text-align: center;
+  padding: 80px 20px 40px;
+  font-size: 42px;
+  color: #D4AF37;
+  text-shadow: 0 0 12px #D4AF37;
+}
+
+.map-section {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  box-shadow: 0 0 30px rgba(201,162,77,0.5);
+  padding: 30px;
+}
+
+.map-section img {
+  width: 90%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border: 1.5px solid #C9A24D;
+}
+
+.map-info {
+  margin-top: 22px;
+}
+
+.map-info h2 {
+  color: #D4AF37;
+  font-size: 26px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.map-info p {
+  color: #d6d6d6;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: 32px;
+  }
+  .map-section img {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== TOP CONTROLS ===== -->
+<div class="top-controls">
+  <div class="search-box">
+    <input type="text" placeholder="Search map by year or event..." oninput="searchMaps(this.value)">
+    <div class="search-results" id="results"></div>
+  </div>
+  <button class="back-btn" onclick="goBack()">← Back</button>
+</div>
+
+<div class="page-title">Territorial Evolution of the Maratha Empire</div>
+
+<!-- MAPS -->
+<div class="map-section" id="map1680">
+  <img src="assets/maps/maratha-1680.jpg">
+  <div class="map-info">
+    <h2>Maratha Territory at the Time of Shivaji Maharaj (1680)</h2>
+    <p>At the time of Chhatrapati Shivaji Maharaj’s death in 1680, the Marathas controlled Konkan, Satara, Kolhapur, and parts of Karnataka and Tamil regions.</p>
+  </div>
+</div>
+
+<div class="map-section" id="map1700">
+  <img src="assets/maps/maratha-1700.jpg">
+  <div class="map-info">
+    <h2>Maratha Revival after Sambhaji Maharaj (1700)</h2>
+    <p>Despite Mughal oppression, the Marathas regrouped and revived their strength after 1689.</p>
+  </div>
+</div>
+
+<div class="map-section" id="map1785">
+  <img src="assets/maps/maratha-1785.jpg">
+  <div class="map-info">
+    <h2>Maratha Expansion Across India (1785)</h2>
+    <p>The Marathas emerged as the paramount power, extending influence across most of India.</p>
+  </div>
+</div>
+
+<div class="map-section" id="map1798">
+  <img src="assets/maps/maratha-1798.jpg">
+  <div class="map-info">
+    <h2>Southern Expansion and Power (1798)</h2>
+    <p>Victory over the Nizam at Kharda extended Maratha dominance in the Deccan.</p>
+  </div>
+</div>
+
+<div class="map-section" id="map1805">
+  <img src="assets/maps/maratha-1805.jpg">
+  <div class="map-info">
+    <h2>Anglo-Maratha Wars (1802–1805)</h2>
+    <p>The Treaty of Bassein weakened Maratha sovereignty and strengthened British control.</p>
+  </div>
+</div>
+
+<div class="map-section" id="map1836">
+  <img src="assets/maps/maratha-1836.jpg">
+  <div class="map-info">
+    <h2>Collapse of Maratha Independence (1819–1836)</h2>
+    <p>The British dismantled Maratha autonomy after the Third Anglo-Maratha War.</p>
+  </div>
+</div>
+
+<div class="map-section" id="map1856">
+  <img src="assets/maps/maratha-1856.jpg">
+  <div class="map-info">
+    <h2>Doctrine of Lapse & Final Annexations (1856)</h2>
+    <p>Former Maratha states were annexed under British imperial policy.</p>
+  </div>
+</div>
+
+<script>
+const maps = [
+  { title: "1680 – Shivaji Maharaj", id: "map1680" },
+  { title: "1700 – Sambhaji Revival", id: "map1700" },
+  { title: "1785 – Maratha Expansion", id: "map1785" },
+  { title: "1798 – Southern Power", id: "map1798" },
+  { title: "1805 – Anglo-Maratha Wars", id: "map1805" },
+  { title: "1836 – End of Independence", id: "map1836" },
+  { title: "1856 – Doctrine of Lapse", id: "map1856" }
+];
+
+function searchMaps(value) {
+  const res = document.getElementById("results");
+  res.innerHTML = "";
+  if (!value) {
+    res.style.display = "none";
+    return;
+  }
+
+  maps.filter(m => m.title.toLowerCase().includes(value.toLowerCase()))
+      .forEach(m => {
+        const div = document.createElement("div");
+        div.textContent = m.title;
+        div.onclick = () => {
+          document.getElementById(m.id).scrollIntoView({ behavior: "smooth" });
+          res.style.display = "none";
+        };
+        res.appendChild(div);
+      });
+
+  res.style.display = "block";
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

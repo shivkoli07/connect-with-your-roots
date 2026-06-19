@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Maratha Weapon</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+  padding: 40px 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: -1;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  padding: 40px;
+  box-shadow: 0 0 35px rgba(201,162,77,0.6);
+}
+
+.header {
+  text-align: center;
+}
+
+.header img {
+  max-width: 100%;
+  max-height: 300px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  color: #D4AF37;
+  font-size: 36px;
+}
+
+.section {
+  margin-top: 30px;
+}
+
+.section h2 {
+  color: #D4AF37;
+  border-bottom: 1px solid #C9A24D;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.section p {
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 35px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  color: #1c1c1c;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <img id="weaponImage">
+    <h1 id="weaponName"></h1>
+    <p id="weaponType"></p>
+  </div>
+
+  <div class="section">
+    <h2>Description</h2>
+    <p id="weaponDesc"></p>
+  </div>
+
+  <div class="section">
+    <h2>Usage & Significance</h2>
+    <p id="weaponUse"></p>
+  </div>
+
+  <a class="back-btn" href="weapons.html">← Back to Weapons</a>
+
+</div>
+
+<script>
+const weapons = {
+
+  bhavani: {
+    name: "Bhavani Talwar",
+    type: "Sword",
+    image: "assets/weapons/bhavani.jpg",
+    desc:
+`The Bhavani Talwar is believed to be the legendary sword used by Chhatrapati Shivaji Maharaj.`,
+    use:
+`Symbol of divine power and righteous warfare.
+Associated with victory and leadership.`
+  },
+
+  dandpatta: {
+    name: "Dandpatta",
+    type: "Flexible Sword",
+    image: "assets/weapons/dandpatta.jpg",
+    desc:
+`Dandpatta is a flexible sword combined with a gauntlet.`,
+    use:
+`Used by Maratha warriors in close combat and cavalry warfare.`
+  },
+
+  katar: {
+    name: "Katar",
+    type: "Punch Dagger",
+    image: "assets/weapons/katar.jpg",
+    desc:
+`The Katar is a short-bladed weapon designed for thrusting.`,
+    use:
+`Effective in armor-piercing and surprise attacks.`
+  },
+
+  barchi: {
+    name: "Barchi",
+    type: "Spear",
+    image: "assets/weapons/barchi.jpg",
+    desc:
+`Barchi was a long spear used by infantry and cavalry.`,
+    use:
+`Ideal for formation battles and mounted warfare.`
+  },
+
+  vaghnakh: {
+    name: "Vagh Nakh",
+    type: "Concealed Weapon",
+    image: "assets/weapons/vaghnakh.jpg",
+    desc:
+`Vagh Nakh consists of curved blades resembling tiger claws.`,
+    use:
+`Used in assassination and close combat.`
+  },
+
+  teerdhanush: {
+    name: "Teer–Dhanush",
+    type: "Ranged Weapon",
+    image: "assets/weapons/bow.jpg",
+    desc:
+`Bow and arrow were widely used in early Maratha warfare.`,
+    use:
+`Effective for long-range attacks and fort defense.`
+  }
+
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const data = weapons[id];
+
+if (data) {
+  document.getElementById("weaponImage").src = data.image;
+  document.getElementById("weaponName").innerText = data.name;
+  document.getElementById("weaponType").innerText = data.type;
+  document.getElementById("weaponDesc").innerText = data.desc;
+  document.getElementById("weaponUse").innerText = data.use;
+}
+</script>
+
+</body>
+</html>

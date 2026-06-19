@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fort Details</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: -1;
+}
+
+.container {
+  max-width: 900px;
+  margin: 60px auto;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  box-shadow: 0 0 35px rgba(201,162,77,0.6);
+  padding: 30px;
+}
+
+.fort-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border: 1.5px solid #C9A24D;
+  margin-bottom: 25px;
+}
+
+h1 {
+  color: #D4AF37;
+  text-align: center;
+  font-size: 36px;
+}
+
+.meta {
+  text-align: center;
+  font-style: italic;
+  color: #d6c27a;
+  margin-bottom: 30px;
+}
+
+.section { margin-bottom: 22px; }
+
+.section h2 {
+  color: #D4AF37;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.section p {
+  color: #d6d6d6;
+  line-height: 1.7;
+}
+
+.back-btn {
+  display: block;
+  width: fit-content;
+  margin: 35px auto 10px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  color: #1c1c1c;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <img id="fortImage" class="fort-image">
+  <h1 id="fortName"></h1>
+  <div id="fortMeta" class="meta"></div>
+
+  <div class="section"><h2>History</h2><p id="fortHistory"></p></div>
+  <div class="section"><h2>Strategic Importance</h2><p id="fortImportance"></p></div>
+  <div class="section"><h2>Major Battles / Events</h2><p id="fortBattles"></p></div>
+
+  <a class="back-btn" href="forts.html">← Back to Forts</a>
+</div>
+
+<script>
+const forts = {
+
+raigad:{name:"Raigad Fort",meta:"Capital of Swarajya",image:"assets/forts/raigad.jpg",
+history:"Developed by Chhatrapati Shivaji Maharaj and crowned capital in 1674.",
+importance:"Seat of Maratha administration and sovereignty.",
+battles:"Coronation of Shivaji Maharaj (1674)"},
+
+shivneri:{name:"Shivneri Fort",meta:"Birthplace of Shivaji Maharaj",image:"assets/forts/shivneri.jpg",
+history:"Birthplace of Chhatrapati Shivaji Maharaj in 1630.",
+importance:"Sacred origin of Swarajya.",
+battles:"No major battles"},
+
+rajgad:{name:"Rajgad Fort",meta:"First Capital",image:"assets/forts/rajgad.jpg",
+history:"First capital of Swarajya for 26 years.",
+importance:"Strong administrative fort.",
+battles:"Defended against Mughal attacks"},
+
+pratapgad:{name:"Pratapgad Fort",meta:"Afzal Khan Encounter",image:"assets/forts/pratapgad.jpg",
+history:"Built in 1656 overlooking Jawali valley.",
+importance:"Symbol of Maratha bravery.",
+battles:"Battle of Pratapgad (1659)"},
+
+sindhudurg:{name:"Sindhudurg Fort",meta:"Naval Power",image:"assets/forts/sindhudurg.jpg",
+history:"Sea fort built by Shivaji Maharaj.",
+importance:"Protected Konkan coast.",
+battles:"Naval conflicts with Europeans"},
+
+purandar:{name:"Purandar Fort",meta:"Treaty Site",image:"assets/forts/purandar.jpg",
+history:"Ancient fort near Pune.",
+importance:"Strategic gateway to Pune.",
+battles:"Treaty of Purandar (1665)"},
+
+torna:{name:"Torna Fort",meta:"First Conquest",image:"assets/forts/torna.jpg",
+history:"First fort captured by Shivaji Maharaj in 1646.",
+importance:"Marked beginning of Swarajya.",
+battles:"Initial Maratha expansion"},
+
+lohagad:{name:"Lohagad Fort",meta:"Treasury Fort",image:"assets/forts/lohagad.jpg",
+history:"Used to store treasure from Surat raids.",
+importance:"Economic strength.",
+battles:"Mughal-Maratha conflicts"},
+
+visapur:{name:"Visapur Fort",meta:"Twin of Lohagad",image:"assets/forts/visapur.jpg",
+history:"Built by Balaji Vishwanath.",
+importance:"Military stronghold.",
+battles:"British attacks (1818)"},
+
+sinhagad:{name:"Sinhagad Fort",meta:"Tanaji’s Sacrifice",image:"assets/forts/sinhagad.jpg",
+history:"Captured by Tanaji Malusare.",
+importance:"Symbol of sacrifice.",
+battles:"Battle of Sinhagad (1670)"},
+
+panhala:{name:"Panhala Fort",meta:"Strategic Fort",image:"assets/forts/panhala.jpg",
+history:"Major southern fort.",
+importance:"Controlled Deccan routes.",
+battles:"Siege of Panhala"},
+
+daulatabad:{name:"Daulatabad Fort",meta:"Northern Gateway",image:"assets/forts/daulatabad.jpg",
+history:"Ancient Yadav fort later held by Marathas.",
+importance:"Northern defense.",
+battles:"Multiple dynastic battles"},
+
+janjira:{name:"Janjira Fort",meta:"Sea Fort",image:"assets/forts/janjira.jpg",
+history:"Stronghold of Siddis.",
+importance:"Never conquered.",
+battles:"Maratha naval attempts"},
+
+suvarnadurg:{name:"Suvarnadurg Fort",meta:"Naval Defense",image:"assets/forts/suvarnadurg.jpg",
+history:"Important naval fort.",
+importance:"Protected sea routes.",
+battles:"Captured by Kanhoji Angre"},
+
+vijaydurg:{name:"Vijaydurg Fort",meta:"Eastern Gibraltar",image:"assets/forts/vijaydurg.jpg",
+history:"Oldest sea fort.",
+importance:"Naval base of Angres.",
+battles:"Maratha-British naval wars"},
+
+salher:{name:"Salher Fort",meta:"Open Field Victory",image:"assets/forts/salher.jpg",
+history:"Site of decisive Maratha victory.",
+importance:"Boosted Maratha prestige.",
+battles:"Battle of Salher (1672)"},
+
+mulher:{name:"Mulher Fort",meta:"Trade Route Control",image:"assets/forts/mulher.jpg",
+history:"Controlled trade routes.",
+importance:"Economic importance.",
+battles:"Regional conflicts"},
+
+gadhinglaj:{name:"Gadhinglaj Fort",meta:"Southern Defense",image:"assets/forts/gadhinglaj.jpg",
+history:"Protected southern frontier.",
+importance:"Border fort.",
+battles:"Local conflicts"},
+
+prabalgad:{name:"Prabalgad Fort",meta:"Konkan Watch",image:"assets/forts/prabalgad.jpg",
+history:"Watchtower fort.",
+importance:"Konkan surveillance.",
+battles:"None major"}
+};
+
+const id = new URLSearchParams(window.location.search).get("id");
+const f = forts[id];
+if(f){
+  fortImage.src=f.image;
+  fortName.innerText=f.name;
+  fortMeta.innerText=f.meta;
+  fortHistory.innerText=f.history;
+  fortImportance.innerText=f.importance;
+  fortBattles.innerText=f.battles;
+}
+</script>
+
+</body>
+</html>

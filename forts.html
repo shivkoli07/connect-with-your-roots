@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forts of Maratha Empire</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  z-index: -1;
+}
+
+/* ===== TOP CONTROLS ===== */
+.top-controls {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* ===== SEARCH ===== */
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  width: 220px;
+  font-size: 14px;
+  border: 1.5px solid #C9A24D;
+  background: rgba(0,0,0,0.85);
+  color: #F8F6F1;
+  outline: none;
+}
+
+.search-results {
+  position: absolute;
+  top: 38px;
+  width: 100%;
+  background: rgba(0,0,0,0.95);
+  border: 1px solid #C9A24D;
+  display: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.search-results div {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(201,162,77,0.2);
+}
+
+.search-results div:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1.5px solid #C9A24D;
+  color: #F8F6F1;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-btn:hover {
+  background: rgba(201,162,77,0.2);
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title {
+  text-align: center;
+  padding: 50px 20px 20px;
+  font-size: 42px;
+  color: #D4AF37;
+  text-shadow: 0 0 12px #D4AF37;
+}
+
+.grid {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+}
+
+.card {
+  background: rgba(0,0,0,0.92);
+  border: 1.5px solid #C9A24D;
+  box-shadow: 0 0 22px rgba(201,162,77,0.45);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 35px rgba(255,200,120,0.8);
+}
+
+.image-frame {
+  height: 260px;
+  background: radial-gradient(circle, #2b220f, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.card-name {
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
+  border-top: 1px solid rgba(201,162,77,0.4);
+}
+
+.card-sub {
+  font-size: 14px;
+  color: #c9c9c9;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== TOP CONTROLS ===== -->
+<div class="top-controls">
+  <div class="search-box">
+    <input type="text" placeholder="Search Fort..." oninput="searchForts(this.value)">
+    <div class="search-results" id="results"></div>
+  </div>
+  <button class="back-btn" onclick="goBack()">← Back</button>
+</div>
+
+<div class="page-title">Forts of the Maratha Empire</div>
+
+<div class="grid">
+
+<div class="card" onclick="openFort('raigad')"><div class="image-frame"><img src="assets/forts/raigad.jpg"></div><div class="card-name">Raigad Fort<div class="card-sub">Capital of Swarajya</div></div></div>
+<div class="card" onclick="openFort('shivneri')"><div class="image-frame"><img src="assets/forts/shivneri.jpg"></div><div class="card-name">Shivneri Fort<div class="card-sub">Birthplace of Shivaji Maharaj</div></div></div>
+<div class="card" onclick="openFort('rajgad')"><div class="image-frame"><img src="assets/forts/rajgad.jpg"></div><div class="card-name">Rajgad Fort<div class="card-sub">First Capital</div></div></div>
+<div class="card" onclick="openFort('pratapgad')"><div class="image-frame"><img src="assets/forts/pratapgad.jpg"></div><div class="card-name">Pratapgad Fort<div class="card-sub">Afzal Khan Encounter</div></div></div>
+<div class="card" onclick="openFort('sindhudurg')"><div class="image-frame"><img src="assets/forts/sindhudurg.jpg"></div><div class="card-name">Sindhudurg Fort<div class="card-sub">Naval Power</div></div></div>
+<div class="card" onclick="openFort('purandar')"><div class="image-frame"><img src="assets/forts/purandar.jpg"></div><div class="card-name">Purandar Fort<div class="card-sub">Treaty Site</div></div></div>
+
+<div class="card" onclick="openFort('torna')"><div class="image-frame"><img src="assets/forts/torna.jpg"></div><div class="card-name">Torna Fort<div class="card-sub">First Conquest</div></div></div>
+<div class="card" onclick="openFort('lohagad')"><div class="image-frame"><img src="assets/forts/lohagad.jpg"></div><div class="card-name">Lohagad Fort<div class="card-sub">Treasury Fort</div></div></div>
+<div class="card" onclick="openFort('visapur')"><div class="image-frame"><img src="assets/forts/visapur.jpg"></div><div class="card-name">Visapur Fort<div class="card-sub">Twin of Lohagad</div></div></div>
+<div class="card" onclick="openFort('sinhagad')"><div class="image-frame"><img src="assets/forts/sinhagad.jpg"></div><div class="card-name">Sinhagad Fort<div class="card-sub">Tanaji’s Sacrifice</div></div></div>
+<div class="card" onclick="openFort('panhala')"><div class="image-frame"><img src="assets/forts/panhala.jpg"></div><div class="card-name">Panhala Fort<div class="card-sub">Strategic Fort</div></div></div>
+<div class="card" onclick="openFort('daulatabad')"><div class="image-frame"><img src="assets/forts/daulatabad.jpg"></div><div class="card-name">Daulatabad Fort<div class="card-sub">Northern Gateway</div></div></div>
+<div class="card" onclick="openFort('janjira')"><div class="image-frame"><img src="assets/forts/janjira.jpg"></div><div class="card-name">Janjira Fort<div class="card-sub">Sea Fort</div></div></div>
+<div class="card" onclick="openFort('suvarnadurg')"><div class="image-frame"><img src="assets/forts/suvarnadurg.jpg"></div><div class="card-name">Suvarnadurg Fort<div class="card-sub">Naval Defense</div></div></div>
+<div class="card" onclick="openFort('vijaydurg')"><div class="image-frame"><img src="assets/forts/vijaydurg.jpg"></div><div class="card-name">Vijaydurg Fort<div class="card-sub">Eastern Gibraltar</div></div></div>
+<div class="card" onclick="openFort('salher')"><div class="image-frame"><img src="assets/forts/salher.jpg"></div><div class="card-name">Salher Fort<div class="card-sub">Open Field Victory</div></div></div>
+<div class="card" onclick="openFort('mulher')"><div class="image-frame"><img src="assets/forts/mulher.jpg"></div><div class="card-name">Mulher Fort<div class="card-sub">Trade Route Control</div></div></div>
+<div class="card" onclick="openFort('gadhinglaj')"><div class="image-frame"><img src="assets/forts/gadhinglaj.jpg"></div><div class="card-name">Gadhinglaj Fort<div class="card-sub">Southern Defense</div></div></div>
+<div class="card" onclick="openFort('prabalgad')"><div class="image-frame"><img src="assets/forts/prabalgad.jpg"></div><div class="card-name">Prabalgad Fort<div class="card-sub">Konkan Watch</div></div></div>
+
+</div>
+
+<script>
+const forts = [
+  "Raigad","Shivneri","Rajgad","Pratapgad","Sindhudurg","Purandar",
+  "Torna","Lohagad","Visapur","Sinhagad","Panhala","Daulatabad",
+  "Janjira","Suvarnadurg","Vijaydurg","Salher","Mulher","Gadhinglaj","Prabalgad"
+];
+
+function searchForts(value) {
+  const res = document.getElementById("results");
+  res.innerHTML = "";
+  if (!value) { res.style.display = "none"; return; }
+
+  forts.filter(f => f.toLowerCase().includes(value.toLowerCase()))
+    .forEach(f => {
+      const div = document.createElement("div");
+      div.textContent = f + " Fort";
+      div.onclick = () => openFort(f.toLowerCase());
+      res.appendChild(div);
+    });
+
+  res.style.display = "block";
+}
+
+function openFort(id) {
+  window.location.href = "fort-profile.html?id=" + id;
+}
+
+function goBack() {
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

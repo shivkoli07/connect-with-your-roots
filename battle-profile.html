@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Maratha Battle</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  color: #F8F6F1;
+  padding: 40px 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: -1;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  padding: 40px;
+  box-shadow: 0 0 35px rgba(201,162,77,0.6);
+}
+
+/* ✅ BANNER FIX */
+.banner {
+  height: 350px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  border: 1.5px solid #C9A24D;
+}
+
+.banner img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;   /* ✅ NO CROPPING */
+  filter: drop-shadow(0 0 12px rgba(212,175,55,0.6));
+}
+
+.header h1 {
+  color: #D4AF37;
+  font-size: 36px;
+}
+
+.meta {
+  margin-top: 10px;
+  color: #cfcfcf;
+}
+
+.section {
+  margin-top: 30px;
+}
+
+.section h2 {
+  color: #D4AF37;
+  border-bottom: 1px solid #C9A24D;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.section p {
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 35px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  color: #1c1c1c;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="banner">
+    <img id="battleImage" alt="">
+  </div>
+
+  <div class="header">
+    <h1 id="battleName"></h1>
+    <div class="meta" id="battleMeta"></div>
+  </div>
+
+  <div class="section">
+    <h2>Background</h2>
+    <p id="battleBackground"></p>
+  </div>
+
+  <div class="section">
+    <h2>Battle Strategy</h2>
+    <p id="battleStrategy"></p>
+  </div>
+
+  <div class="section">
+    <h2>Outcome & Impact</h2>
+    <p id="battleOutcome"></p>
+  </div>
+
+  <a class="back-btn" href="battles.html">← Back to Battles</a>
+
+</div>
+
+<script>
+const battles = {
+  pratapgad: {
+    name: "Battle of Pratapgad (1659)",
+    meta: "Marathas vs Bijapur Sultanate",
+    image: "assets/battles/pratapgad.jpg",
+    background:
+`Afzal Khan was sent to defeat Shivaji Maharaj.`,
+    strategy:
+`Strategic meeting and surprise tactics.`,
+    outcome:
+`Maratha victory and rise of Swarajya.`
+  },
+
+  kolhapur: {
+    name: "Battle of Kolhapur (1659)",
+    meta: "Marathas vs Bijapur Forces",
+    image: "assets/battles/kolhapur.jpg",
+    background:
+`Bijapur forces attacked Maratha lands.`,
+    strategy:
+`Fast cavalry and terrain advantage.`,
+    outcome:
+`Decisive Maratha victory.`
+  },
+
+  purandar: {
+    name: "Battle of Purandar (1665)",
+    meta: "Marathas vs Mughal Empire",
+    image: "assets/battles/purandar.jpg",
+    background:
+`Mirza Raja Jai Singh led Mughal siege.`,
+    strategy:
+`Heroic defense by Murarbaji Deshpande.`,
+    outcome:
+`Treaty of Purandar signed.`
+  },
+
+  sinhagad: {
+    name: "Battle of Sinhagad (1670)",
+    meta: "Marathas vs Mughals",
+    image: "assets/battles/sinhagad.jpg",
+    background:
+`Sinhagad was under Mughal control.`,
+    strategy:
+`Night attack led by Tanaji Malusare.`,
+    outcome:
+`Fort recaptured; Tanaji martyred.`
+  },
+
+  salher: {
+    name: "Battle of Salher (1672)",
+    meta: "Marathas vs Mughal Empire",
+    image: "assets/battles/salher.jpg",
+    background:
+`Open-field confrontation.`,
+    strategy:
+`Coordinated cavalry attacks.`,
+    outcome:
+`First Mughal defeat in open battle.`
+  },
+
+  pawan: {
+    name: "Battle of Pawan Khind (1660)",
+    meta: "Capital Defense",
+    image: "assets/battles/pawan.jpg",
+    background:
+`Pawan Khind was a strategic location.`,
+    strategy:
+`Heroic defense by Baji Prabhu Deshpande.`,
+    outcome:
+`Mughal forces were repelled.`
+  }
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+const data = battles[id];
+
+if (data) {
+  document.getElementById("battleImage").src = data.image;
+  document.getElementById("battleName").innerText = data.name;
+  document.getElementById("battleMeta").innerText = data.meta;
+  document.getElementById("battleBackground").innerText = data.background;
+  document.getElementById("battleStrategy").innerText = data.strategy;
+  document.getElementById("battleOutcome").innerText = data.outcome;
+}
+</script>
+
+</body>
+</html>

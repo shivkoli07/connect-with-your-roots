@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Connect To Your Roots</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 1;
+}
+
+.royal-box {
+  position: relative;
+  z-index: 5;
+  width: 700px;
+  padding: 60px 50px;
+  background: rgba(0, 0, 0, 0.92);
+  border: 2px solid #C9A24D;
+  box-shadow:
+    0 0 25px rgba(201, 162, 77, 0.5),
+    inset 0 0 20px rgba(201, 162, 77, 0.15);
+  text-align: center;
+}
+
+.title {
+  font-size: 44px;
+  color: #D4AF37;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 10px #D4AF37,
+    0 0 22px #B8962E;
+}
+
+.subtitle {
+  margin-top: 18px;
+  font-size: 16px;
+  color: #cfcfcf;
+  letter-spacing: 1px;
+}
+
+.enter-btn {
+  margin-top: 35px;
+  padding: 14px 42px;
+  font-size: 18px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  border: none;
+  cursor: pointer;
+  color: #1c1c1c;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0 22px rgba(212, 175, 55, 0.8);
+  transition: all 0.3s ease;
+}
+
+.enter-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 36px rgba(255, 200, 100, 1);
+}
+
+.options {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.option-btn {
+  padding: 14px;
+  background: transparent;
+  border: 1.5px solid #C9A24D;
+  color: #F8F6F1;
+  font-size: 15px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.option-btn:hover {
+  background: rgba(201,162,77,0.15);
+  box-shadow: 0 0 15px rgba(201,162,77,0.6);
+}
+
+@media (max-width: 768px) {
+  .royal-box {
+    width: 90%;
+    padding: 45px 30px;
+  }
+
+  .title {
+    font-size: 34px;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 🔥 SOUND BUTTON */
+.sound-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  padding: 8px 14px;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid #C9A24D;
+  color: #D4AF37;
+  cursor: pointer;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 FIRE SOUND -->
+<audio id="fireSound" loop>
+  <source src="assets/fire.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🔥 SOUND BUTTON (fallback for autoplay restrictions) -->
+<button class="sound-btn" onclick="toggleSound()">🔊 Sound</button>
+
+<div class="royal-box">
+  <div class="title">Connect To Your Roots</div>
+  <div class="subtitle">Rediscover the Legacy of the Maratha Empire</div>
+
+  <button class="enter-btn" onclick="enterSite()">ENTER</button>
+
+  <div class="options">
+    <button class="option-btn" onclick="go('main.html')">Royal Maratha Family Members</button>
+    <button class="option-btn" onclick="go('forts.html')">Forts of Maratha Empire</button>
+    <button class="option-btn" onclick="go('weapons.html')">Weapons of Maratha Empire</button>
+    <button class="option-btn" onclick="go('battles.html')">Battles of Maratha Empire</button>
+    <button class="option-btn" onclick="go('maps.html')">Maps of Maratha Empire</button>
+    <button class="option-btn" onclick="go('warriors.html')">Great Maratha Warriors</button>
+  </div>
+</div>
+
+<script>
+function enterSite() {
+  window.location.href = "main.html";
+}
+
+function go(page) {
+  window.location.href = page;
+}
+
+/* 🔥 AUDIO CONTROL */
+const fireSound = document.getElementById("fireSound");
+
+// Try autoplay on load (may work in some browsers after interaction)
+window.addEventListener("click", () => {
+  fireSound.play().catch(() => {});
+}, { once: true });
+
+function toggleSound() {
+  if (fireSound.paused) {
+    fireSound.play();
+  } else {
+    fireSound.pause();
+  }
+}
+</script>
+
+</body>
+</html>

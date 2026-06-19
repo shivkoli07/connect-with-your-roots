@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register | Maratha Legacy</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: url("assets/index-wallpaper.jpg") center/cover no-repeat fixed;
+  font-family: Georgia, serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F8F6F1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: -1;
+}
+
+.auth-box {
+  width: 400px;
+  background: rgba(0,0,0,0.92);
+  border: 2px solid #C9A24D;
+  box-shadow: 0 0 35px rgba(201,162,77,0.6);
+  padding: 40px;
+}
+
+.auth-title {
+  text-align: center;
+  font-size: 32px;
+  color: #D4AF37;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px #D4AF37;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  background: #111;
+  border: 1px solid #C9A24D;
+  color: #fff;
+  font-size: 15px;
+}
+
+.auth-box input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(212,175,55,0.7);
+}
+
+.auth-box button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #D4AF37, #E07A1F);
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #1c1c1c;
+  box-shadow: 0 0 20px rgba(212,175,55,0.8);
+}
+
+.auth-box button:hover {
+  opacity: 0.9;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: #D4AF37;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<form class="auth-box" action="http://localhost:3000/register" method="POST">
+  <div class="auth-title">Create Account</div>
+
+  <input type="text" name="username" placeholder="Choose Username" required>
+  <input type="password" name="password" placeholder="Create Password" required>
+
+  <button type="submit">Register</button>
+
+  <div class="auth-footer">
+    Already registered? <a href="login.html">Login</a>
+  </div>
+</form>
+
+</body>
+</html>
